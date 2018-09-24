@@ -29,7 +29,7 @@ form = """
         <!-- create your form here -->
         <form method="POST">
         <label for="rot">Rotate by:</label>
-            <input      type="number" name="rot" value="0"/>
+            <input      type="number" name="rot" value="{1}"/>
             <textarea   type="text" name="text">{0}</textarea>
             <br>
             <input type="submit" value="Squanch It!"/>
@@ -49,14 +49,14 @@ def encrypt():
     rotation = rotate_string(text, rot)
     # sentence = "<h1>" + rotate_string(text, rot) + "</h1>"
 
-    return form.format(rotation)
+    return form.format(rotation, rot)
 
 
 @app.route("/")
 def index():
     # content = form
     
-    return form.format('')
+    return form.format('', '0')
 
 
 app.run()
