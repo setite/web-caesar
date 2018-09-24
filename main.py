@@ -28,10 +28,9 @@ form = """
     <body>
         <!-- create your form here -->
         <form method="POST">
-        <label for="rot">Rotate by:
-            <input      type="text" name="rot" value="0"/>
+        <label for="rot">Rotate by:</label>
+            <input      type="number" name="rot" value="0"/>
             <textarea   type="text" name="text"></textarea>
-        </label>
             <br>
             <input type="submit" value="Squanch It!"/>
         </form>
@@ -39,6 +38,24 @@ form = """
     </body>
 </html>
 """
+
+@app.route("/", methods=['POST'])
+def encrypt():
+    # rot = []
+    # text = ""
+    rot = int(request.form['rot'])
+    text = str(request.form['text'])
+
+    
+    sentence = "<h1>" + rotate_string(text, rot) + "</h1>"
+    link = """
+    <p>
+        <a href="/">back to index</a>
+    </p>
+    """
+
+    return sentence + link
+
 
 @app.route("/")
 def index():
